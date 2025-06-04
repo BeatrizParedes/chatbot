@@ -21,7 +21,7 @@ client.on('message', async msg => {
         await delay(3000); 
         const contact = await msg.getContact(); 
         const name = contact.pushname; 
-        await client.sendMessage(msg.from,'Olá! '+ name.split(" ")[0] + ' Meu nome é Riso e eu sou o assistente virtual da GGP. Como posso ajudá-lo hoje?\n- Licença TRE\n- Férias\n- Licença Saúde\n- E-mail Institucional e SEI\n- Declaração de Vínculo\n- Certidão de Tempo de Serviço\n- Licença Prêmio\n- Recadastramento\n- Estacionamento\n- Frequência\n- Abono de Ponto\n- Suspensão de Contrato'); //Primeira mensagem de texto
+        await client.sendMessage(msg.from,'Olá! '+ name.split(" ")[0] + ' Meu nome é Riso e eu sou o assistente virtual da GGP. Como posso ajudá-lo hoje?\n- Licença TRE\n- Férias\n- Licença Saúde\n- E-mail Institucional e SEI\n- Contracheque\n- Declaração de Vínculo\n- Certidão de Tempo de Serviço\n- Licença Prêmio\n- Recadastramento\n- Estacionamento\n- Frequência\n- Abono de Ponto\n- Suspensão de Contrato'); //Primeira mensagem de texto
     }
     else if (msg.body.match(/(empetur|missao|localização|localizacao|LOCALIZAÇAO|LOCALIZAÇÃO)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -262,6 +262,37 @@ client.on('message', async msg => {
         await delay(3000);
         await client.sendMessage(msg.from, 'Telefone do Recursos Humanos: (81) 91828077');
     }
+    else if (msg.body.match(/(contracheque|Contracheque|Contra-cheque|contra-cheque)/i) && msg.from.endsWith('@c.us')) {
+        const chat = await msg.getChat();
+
+        await delay(3000); 
+        await chat.sendStateTyping(); 
+        await delay(3000);
+        await client.sendMessage(msg.from, 'PARA TIRAR IR OU CONTRA CHEQUE ENTRA NESSE SITE:https://www.sistemas.sad.pe.gov.br/contracheque/html/redirecionamento.html');
+       
+        await delay(1000); 
+        await chat.sendStateTyping(); 
+        await delay(1000);
+        const image = MessageMedia.fromFilePath('./src/img1.jpg');
+        await client.sendMessage(msg.from, image);
+        await client.sendMessage(msg.from, 'CLICA ACESSAR PORTAL DO SERVIDOR');
+
+
+        await delay(1000); 
+        await chat.sendStateTyping(); 
+        await delay(1000);
+        const image2 = MessageMedia.fromFilePath('./src/img2.jpg');
+        await client.sendMessage(msg.from, image2);
+        await client.sendMessage(msg.from, '1- SE FOR PARA CRIAR SENHA CLICA EM CRIAR OU ATUALIZAR. \n2 - SE SE FOR PARA RETIRAR INFORME RENDIMENTO OU CONTRA-CHEQUE PREENCHE OS DADOS E COLOCA A SENHA E SEGUE OS PASSOS');
+
+        await delay(1000); 
+        await chat.sendStateTyping(); 
+        await delay(1000);
+        const image3 = MessageMedia.fromFilePath('./src/img3.jpg');
+        await client.sendMessage(msg.from, image3);
+        await client.sendMessage(msg.from, 'SE FOR PARA INFORME RENDIMENTO CLICA  NELE SE FOR CONTRA CHUEQUE CLICA EM PAGTO');
+    }
+
     else{
         const chat = await msg.getChat();
 
