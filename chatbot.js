@@ -21,7 +21,7 @@ client.on('message', async msg => {
         await delay(3000); 
         const contact = await msg.getContact(); 
         const name = contact.pushname; 
-        await client.sendMessage(msg.from,'Olá! '+ name.split(" ")[0] + ' Meu nome é Riso e eu sou o assistente virtual da GGP. Como posso ajudá-lo hoje?\n- Licença TRE\n- Férias\n- Licença Saúde\n- E-mail Institucional e SEI\n- Contracheque\n- Declaração de Vínculo\n- Certidão de Tempo de Serviço\n- Licença Prêmio\n- Recadastramento\n- Estacionamento\n- Frequência\n- Abono de Ponto\n- Suspensão de Contrato'); //Primeira mensagem de texto
+        await client.sendMessage(msg.from,'Olá! '+ name.split(" ")[0] + ' Meu nome é Riso e eu sou o assistente virtual da GGP. Como posso ajudá-lo hoje?\n- Licença TRE\n- Férias\n- Licença Saúde\n- Licença Maternidade\n- E-mail Institucional e SEI\n- Contracheque, Matrícula e Informe de Rendimento\n- Declaração\n- Certidão de Tempo de Serviço\n- Licença Prêmio\n- Recadastramento\n- Estacionamento\n- Frequência\n- Abono de Ponto\n- Suspensão de Contrato\n- Crachá\n- Auxílios (Cesta básica, Vale refeição, Natalina, Transporte, Educação, Creche, PNE, Funeral, Plano de saúde, Seguro de vida)\n- Cursos (EGAPE, ECI, ESAFAZ)'); //Primeira mensagem de texto
     }
     else if (msg.body.match(/(empetur|missao|localização|localizacao|LOCALIZAÇAO|LOCALIZAÇÃO)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -52,8 +52,23 @@ client.on('message', async msg => {
         await delay(3000);
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'A solicitação deve ser feita pelo SEI, preenchendo o Requerimento Geral com os dias desejados e anexando o documento comprobatório. Enviar para EMPETUR-SAP com a ciência do chefe imediato.');
+        await client.sendMessage(msg.from, 'Solicitar via SEI, preenchendo o Requerimento Geral, anexando documento comprobatório e enviando para EMPETUR-SAP, com ciência do chefe imediato.');
     }
+
+    else if (msg.body.match(/(crachá|Cracha|Crachá|CRACHÁ)/i) && msg.from.endsWith('@c.us')) {
+            const chat = await msg.getChat();
+
+            await delay(3000); 
+            await chat.sendStateTyping(); 
+            await delay(3000);
+            await client.sendMessage(msg.from, 'Como solicitar o crachá:');
+
+            await delay(3000);
+            await chat.sendStateTyping(); 
+            await delay(3000);
+            await client.sendMessage(msg.from, 'Primeiro: entregue pela GGP após a nomeação.\nSegunda via: via SEI, requerimento geral com justificativa, enviado para EMPETUR-SBS, com ciência do chefe imediato.');
+        }
+
     else if (msg.body.match(/(ferias|férias|Férias|Ferias|FERIAS|FÉRIAS)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
 
@@ -65,7 +80,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'A programação é feita pelo Mapa de Férias, disponibilizado em outubro do ano anterior. Importante: a Lei 13.467/2017 veda o início das férias nos dois dias anteriores a um feriado ou repouso semanal remunerado.');
+        await client.sendMessage(msg.from, 'Programação: via Mapa de Férias (disponibilizado em outubro do ano anterior). Proibido iniciar 2 dias antes de feriado ou repouso semanal.');
 
         await delay(3000); 
         await chat.sendStateTyping(); 
@@ -75,7 +90,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Solicitar via SEI com 60 dias de antecedência, justificando a alteração e indicando a nova data. Necessário encaminhar para EMPETUR-SAP com ciência do chefe imediato.');
+        await client.sendMessage(msg.from, 'Alteração: via SEI, despacho com 60 dias de antecedência, justificativa e nova data.');
        
         await delay(3000); 
         await chat.sendStateTyping(); 
@@ -85,7 +100,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Enviar despacho pelo SEI com justificativa e nova data para EMPETUR-SAP, incluindo a ciência do chefe imediato.');
+        await client.sendMessage(msg.from, 'Suspensão: via SEI, despacho com justificativa e nova data.');
     }
     else if (msg.body.match(/(saúde|saude|Saúde|Saude|SAÚDE|SAUDE)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -98,7 +113,22 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Enviar despacho pelo SEI, solicitando os dias de afastamento e anexando o documento comprobatório. Enviar para EMPETUR-SAP com ciência do chefe imediato.');
+        await client.sendMessage(msg.from, 'Via SEI, com requerimento geral, anexando documento comprobatório e enviando para EMPETUR-SAP, com ciência do chefe imediato.\nAté 15 dias: responsabilidade da EMPETUR (salário mantido).\nA partir do 16º dia: convertido em auxílio-doença pelo INSS.');
+    }
+
+    else if (msg.body.match(/(maternidade|materno)/i) && msg.from.endsWith('@c.us')) {
+        const chat = await msg.getChat();
+
+        await delay(3000); 
+        await chat.sendStateTyping(); 
+        await delay(3000);
+        await client.sendMessage(msg.from, 'Como solicitar licença maternidade:');
+
+        await delay(3000); 
+        await chat.sendStateTyping(); 
+        await delay(3000);
+        await client.sendMessage(msg.from, 'Via SEI, com requerimento geral, anexando documento comprobatório e enviando para EMPETUR-SAP, com ciência do chefe imediato.\n120 dias de afastamento (pode iniciar até 28 dias antes do parto com atestado médico).\nSalário maternidade pago pelo INSS.');
+    
     }
     else if (msg.body.match(/(e-mail|institucional|email|E-mail|E-MAIL|EMAIL|sei|SEI)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -121,18 +151,18 @@ client.on('message', async msg => {
         await delay(3000);
         await client.sendMessage(msg.from, 'Se você tiver outras dúvidas ou precisar de mais informações, por favor, compareça ao setor de Recursos Humanos da EMPETUR ou entre em contato pelo telefone (81) 3182-8077.');
     }
-    else if (msg.body.match(/(vinculo|vínculo)/i) && msg.from.endsWith('@c.us')) {
+    else if (msg.body.match(/(declaração|declaracao)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
 
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Como solicitar a declaração de vínculo:');
+        await client.sendMessage(msg.from, 'Como solicitar a declaração:');
 
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Solicitar pelo SEI, preenchendo o Requerimento Geral com justificativa e dados pessoais (nome completo, CPF, matrícula, e-mail e celular). Enviar para EMPETUR-SCP. Retorno em até 5 dias úteis via SEI ou e-mail.');
+        await client.sendMessage(msg.from, 'Solicitar via SEI, preenchendo requerimento geral com: tipo da declaração, justificativa, nome completo, CPF, matrícula, e-mail e celular.\nEnviar para EMPETUR-SCP.\nPrazo: até 5 dias úteis via SEI.');
     }
     else if (msg.body.match(/(tempo|certidão|certidao|CERTIDAO|CERTIDÃO)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -145,7 +175,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, '\n*Para servidores:* Enviar requerimento via SEI, informando justificativa e dados pessoais, anexando documentos como contracheque e portaria de nomeação/exoneração.\n*Para ex-servidores:* Solicitar via e-mail (spc@empetur.pe.gov.be), informando os mesmos dados e anexos necessários.\n*Entrega:* Via SEI ou e-mail em até 5 dias úteis.');
+        await client.sendMessage(msg.from, '\nServidor ativo: via SEI, requerimento geral, justificativa, dados pessoais e anexos (contracheque, portarias).\nEx-servidor: via e-mail scp@empetur.pe.gov.br com justificativa, dados pessoais e documentos.\nPrazo: até 5 dias úteis.');
     }
     else if (msg.body.match(/(premio|prêmio|Premio|Prêmio|PREMIO|PRÊMIO|premium|Premium|PREMIUM)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -153,12 +183,12 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Quem pode solicitar a licença prêmio:');
+        await client.sendMessage(msg.from, 'Quem tem direito:');
 
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Empregados públicos que completaram 10 ou 20 anos de atividade até 2020, com direito a 90 ou 180 dias, respectivamente, em períodos de 30 dias.');
+        await client.sendMessage(msg.from, 'Empregados públicos que completaram 10 anos (90 dias) ou 20 anos (180 dias) de serviço até 2020.');
 
         await delay(3000); 
         await chat.sendStateTyping(); 
@@ -168,7 +198,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Enviar requerimento via SEI com 60 dias de antecedência, incluindo anuência do chefe imediato e encaminhamento para EMPETUR-SCP.');
+        await client.sendMessage(msg.from, 'Via SEI, com 60 dias de antecedência, requerimento geral, ciência do chefe imediato e envio para EMPETUR-SCP.\nImportante: só pode iniciar após a portaria assinada pela direção da EMPETUR.');
     }
     else if (msg.body.match(/(recadastramento|Recadastramento|RECADASTRAMENTO)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -181,7 +211,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Anualmente, enviar pelo SEI cópia atualizada do RG, CNH e comprovante de residência para atualização da pasta funcional.');
+        await client.sendMessage(msg.from, 'Via SEI, no mês do aniversário, anexando RG, CNH, comprovante de residência e demais documentos atualizados. Enviar para EMPETUR-SAP e EMPETUR-SFP. O não envio pode bloquear o salário.');
 
         await delay(3000); 
         await chat.sendStateTyping(); 
@@ -191,7 +221,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Comparecer a uma agência Bradesco no mês do aniversário com RG, CTPS, comprovante da Receita Federal, comprovante de endereço e quitação eleitoral. O não comparecimento pode bloquear o salário.');
+        await client.sendMessage(msg.from, 'presencial, no mês do aniversário, em agência Bradesco, com RG, CTPS, comprovante da Receita Federal, comprovante de endereço e quitação eleitoral.');
     }
     else if (msg.body.match(/(estacionamento|Estacionamento|ESTACIONAMENTO)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -218,7 +248,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Existem dois tipos: frequência no relógio de ponto para servidores sem nível superior e sem gratificação, e frequência por folha de ponto para os demais. A folha deve ser entregue ao departamento pessoal até o 5º dia útil do mês subsequente.');
+        await client.sendMessage(msg.from, 'Relógio de ponto: para casos específicos (Portaria 19/2010).\nFrequência física: para comissionados e demais não abrangidos pela portaria. Entregar folha até o 5º dia útil no SAP.\nFrequência mobile: em uso para alguns servidores.');
     }
     else if (msg.body.match(/(PONTO|ponto|Ponto)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
@@ -231,7 +261,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Solicitar via SEI, preenchendo o Requerimento Geral com justificativa e documento comprobatório. Deve incluir a autorização do chefe imediato antes de enviar para EMPETUR-SAP.');
+        await client.sendMessage(msg.from, 'Solicitar via SEI, requerimento geral com justificativa, documento comprobatório e autorização do chefe imediato.\nEnviar para EMPETUR-SAP.\nAcompanhamento: deve ser feito pelo servidor.');
     }
     else if (msg.body.match(/(obrigada|obrigado|thanks|thank you|grato|grata|gratidão|Obrigada|Obrigado|Obrigado!|Obrigada!|Gracias|gracias)/i) && msg.from.endsWith('@c.us')){
         const chat = await msg.getChat();
@@ -260,9 +290,28 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Telefone do Recursos Humanos: (81) 91828077');
+        await client.sendMessage(msg.from, 'Recursos Humanos EMPETUR – GGP: (81) 3182-8077\nSDT (Treinamento e Atenção ao Servidor): (81) 3182-8234\nEGAPE: (81) 3183-8001\nECI: (81) 3183-0965\nESAFAZ: (81) 3183-5992');
     }
-    else if (msg.body.match(/(contracheque|Contracheque|Contra-cheque|contra-cheque)/i) && msg.from.endsWith('@c.us')) {
+
+        else if (msg.body.match(/(auxílios|auxilios|auxilio|Auxílios|Auxílios|AUXÍLIOS)/i) && msg.from.endsWith('@c.us')) {
+        const chat = await msg.getChat();
+
+        await delay(3000); 
+        await chat.sendStateTyping(); 
+        await delay(3000);
+        await client.sendMessage(msg.from, 'Cesta básica: fevereiro, julho e novembro.\nVale refeição: crédito mensal via cartão (1% desconto).\nCesta natalina: para efetivos, comissionados e cedidos, com desconto de 1%.\nTransporte: via SEI, comprovantes + cartão VEM.\nEducação: para servidores com filhos até 24 anos (universitários).\nCreche: filhos até 6 anos, 11 meses e 29 dias.\nPNE: filhos com necessidades especiais, mediante laudo.\nFuneral: para efetivos (inclusive parentes 1º grau).\nPlano de saúde / odontológico e seguro de vida: via SEI, com documentos.');
+    }
+
+     else if (msg.body.match(/(cursos|Cursos|CURSOS|EGAPE|ECI|ESAFAZ)/i) && msg.from.endsWith('@c.us')) {
+        const chat = await msg.getChat();
+
+        await delay(3000); 
+        await chat.sendStateTyping(); 
+        await delay(3000);
+        await client.sendMessage(msg.from, 'EGAPE: cursos gratuitos para servidores públicos. Inscrição via SGIC (sgic.pe.gov.br). Site: egape.pe.gov.br\nECI: cursos sobre controle interno. Site: scge.pe.gov.br/escola-de-controle-interno\nESAFAZ: cursos para servidores da SEFAZ. Site: esafaz.sefaz.pe.gov.br');
+    }
+
+    else if (msg.body.match(/(contracheque|Contracheque|Contra-cheque|contra-cheque|matrícula|matricula|Matrícula|MATRÍCULA|INFORME|informe|Informe)/i) && msg.from.endsWith('@c.us')) {
         const chat = await msg.getChat();
 
         await delay(3000); 
@@ -275,22 +324,8 @@ client.on('message', async msg => {
         await delay(1000);
         const image = MessageMedia.fromFilePath('./src/img1.jpg');
         await client.sendMessage(msg.from, image);
-        await client.sendMessage(msg.from, 'CLICA ACESSAR PORTAL DO SERVIDOR');
+        await client.sendMessage(msg.from, 'Criar senha → acessar contracheque, matrícula e informe de rendimentos.');
 
-
-        await delay(1000); 
-        await chat.sendStateTyping(); 
-        await delay(1000);
-        const image2 = MessageMedia.fromFilePath('./src/img2.jpg');
-        await client.sendMessage(msg.from, image2);
-        await client.sendMessage(msg.from, '1- SE FOR PARA CRIAR SENHA CLICA EM CRIAR OU ATUALIZAR. \n2 - SE SE FOR PARA RETIRAR INFORME RENDIMENTO OU CONTRA-CHEQUE PREENCHE OS DADOS E COLOCA A SENHA E SEGUE OS PASSOS');
-
-        await delay(1000); 
-        await chat.sendStateTyping(); 
-        await delay(1000);
-        const image3 = MessageMedia.fromFilePath('./src/img3.jpg');
-        await client.sendMessage(msg.from, image3);
-        await client.sendMessage(msg.from, 'SE FOR PARA INFORME RENDIMENTO CLICA  NELE SE FOR CONTRA CHUEQUE CLICA EM PAGTO');
     }
 
     else{
