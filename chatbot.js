@@ -290,7 +290,7 @@ client.on('message', async msg => {
         await delay(3000); 
         await chat.sendStateTyping(); 
         await delay(3000);
-        await client.sendMessage(msg.from, 'Recursos Humanos EMPETUR – GGP: (81) 3182-8077\nSDT (Treinamento e Atenção ao Servidor): (81) 3182-8234\nEGAPE: (81) 3183-8001\nECI: (81) 3183-0965\nESAFAZ: (81) 3183-5992');
+        await client.sendMessage(msg.from, 'Recursos Humanos EMPETUR – GGP: (81) 3182-8077\nSDT (Treinamento e Atenção ao Servidor): (81) 3182-8234\nPROLAZER (Programa de Lazer do Servidor Público) : (81)3182-8194\nSAP (Setor Administrativo Pessoal): (81) 3182-8077\nSAP (Setor Administrativo Pessoal): (81) 3182-8077\nSOP (Setor de Controle Pessoal): (81) 3182-8077\nSBS (Setor de Benefícios e Segurança): (81) 3182-8077\nSFP (Setor de Folha de Pagamento): (81) 3182-8218\nEGAPE: (81) 3183-8001\nECI: (81) 3183-0965\nESAFAZ: (81) 3183-5992');
     }
 
         else if (msg.body.match(/(auxílios|auxilios|auxilio|Auxílios|Auxílios|AUXÍLIOS)/i) && msg.from.endsWith('@c.us')) {
