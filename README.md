@@ -1,3 +1,6 @@
+<img width="2659" height="984" alt="capa riso" src="https://github.com/user-attachments/assets/d906e07c-bdf2-46dc-97ed-7c5739cbafcb" />
+
+
 # 🤖 Assistente Virtual da GGP – WhatsApp Bot  
 
 Este projeto implementa um **bot de atendimento automático no WhatsApp** para a **EMPETUR (Empresa de Turismo de Pernambuco)**.  
